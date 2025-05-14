@@ -1,11 +1,11 @@
-﻿using Invoicetronic.Invoice.Sdk.Api;
-using Invoicetronic.Invoice.Sdk.Client;
-using static Invoicetronic.Invoice.Sdk.Model.Receive;
+﻿using Invoicetronic.Sdk.Api;
+using Invoicetronic.Sdk.Client;
+using static Invoicetronic.Sdk.Model.Receive;
 
 // Configure the SDK.
 var config = new Configuration
 {
-    BasePath = "https://api.invoicetronic.com",
+    BasePath = "https://api.invoicetronic.com/v1",
     Username = "YOUR TEST API KEY (starts with ik_test_)"
 };
 
@@ -14,7 +14,7 @@ var receiveApi = new ReceiveApi(config);
 
 try
 {
-    var inboundInvoices = await receiveApi.InvoiceV1ReceiveGetAsync(unread: true);
+    var inboundInvoices = await receiveApi.ReceiveGetAsync(unread: true);
     Console.WriteLine($"Received {inboundInvoices.Count} invoices");
 
     foreach (var invoice in inboundInvoices)
@@ -34,5 +34,6 @@ try
 }
 catch (ApiException e)
 {
-    Console.WriteLine($"{e.Message} - {e.ErrorCode}");
+    Console.WriteLine($"Error: {e.Message}");
+    Console.WriteLine($"Status Code: {e.ErrorCode}");
 }
