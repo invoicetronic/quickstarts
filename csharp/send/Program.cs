@@ -1,11 +1,11 @@
-﻿using Invoicetronic.Invoice.Sdk.Api;
-using Invoicetronic.Invoice.Sdk.Client;
-using Invoicetronic.Invoice.Sdk.Model;
+﻿using Invoicetronic.Sdk.Api;
+using Invoicetronic.Sdk.Client;
+using Invoicetronic.Sdk.Model;
 
 // Configure the SDK.
 var config = new Configuration
 {
-    BasePath = "https://api.invoicetronic.com",
+    BasePath = "https://api.invoicetronic.com/v1",
     Username = "YOUR TEST API KEY (starts with ik_test_)"
 };
 
@@ -23,7 +23,7 @@ var sendApi = new SendApi(config);
 
 try
 {
-    var sentInvoice = await sendApi.InvoiceV1SendPostAsync(new Send()
+    var sentInvoice = await sendApi.SendPostAsync(new Send()
     {
         FileName = Path.GetFileName(filePath),
         Payload = File.ReadAllText(filePath),

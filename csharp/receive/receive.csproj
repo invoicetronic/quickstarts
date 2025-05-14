@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Invoicetronic.Invoice.Sdk" Version="1.0.0" />
+    <PackageReference Include="Invoicetronic.Sdk" Version="1.0.0" />
   </ItemGroup>
 
 </Project>
