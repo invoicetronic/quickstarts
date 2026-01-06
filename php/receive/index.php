@@ -26,9 +26,9 @@ try {
 
     foreach ($inboundInvoices as $invoice) {
         // Gestisci encoding XML o Base64
-        if ($invoice->getEncoding() === 'xml') {
+        if ($invoice->getEncoding() === 'Xml') {
             file_put_contents($invoice->getFileName(), $invoice->getPayload());
-        } elseif ($invoice->getEncoding() === 'base64') {
+        } elseif ($invoice->getEncoding() === 'Base64') {
             file_put_contents($invoice->getFileName(), base64_decode($invoice->getPayload()));
         }
 
