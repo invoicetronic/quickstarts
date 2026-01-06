@@ -1,0 +1,6 @@
+node_modules/
+dist/
+*.xml
+*.xml.p7m
+.env
+package-lock.json
