@@ -1,0 +1,16 @@
+{
+    "name": "invoicetronic/receive-example",
+    "description": "Invoicetronic API - Receive invoices example",
+    "type": "project",
+    "require": {
+        "php": ">=7.4",
+        "invoicetronic/invoicetronic-sdk": "^1.1.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Invoicetronic",
+            "email": "info@invoicetronic.com"
+        }
+    ]
+}
