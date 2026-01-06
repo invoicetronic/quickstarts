@@ -1,0 +1,19 @@
+{
+  "name": "invoicetronic-receive-example",
+  "version": "1.0.0",
+  "description": "Invoicetronic API - Receive invoices example",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "invoicetronic",
+    "fattura",
+    "invoice"
+  ],
+  "author": "Invoicetronic",
+  "license": "MIT",
+  "dependencies": {
+    "@invoicetronic/js-sdk": "^1.1.0"
+  }
+}
