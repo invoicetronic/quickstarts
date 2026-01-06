@@ -1,0 +1,13 @@
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.xml
+*.xml.p7m
+.env
+.idea/
+*.iml
+.classpath
+.project
+.settings/
