@@ -4,7 +4,7 @@
     "type": "project",
     "require": {
         "php": ">=7.4",
-        "invoicetronic/invoicetronic-sdk": "^1.1.0"
+        "invoicetronic/invoicetronic-sdk": "^1.1.7"
     },
     "license": "MIT",
     "authors": [

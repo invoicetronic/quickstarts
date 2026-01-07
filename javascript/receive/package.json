@@ -14,6 +14,6 @@
   "author": "Invoicetronic",
   "license": "MIT",
   "dependencies": {
-    "@invoicetronic/js-sdk": "^1.1.0"
+    "@invoicetronic/js-sdk": "^1.1.7"
   }
 }
