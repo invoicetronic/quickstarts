@@ -1,3 +1,3 @@
 source 'https://rubygems.org'
 
-gem 'invoicetronic_sdk', '~> 1.1.0'
+gem 'invoicetronic_sdk', '~> 1.1.7'

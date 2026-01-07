@@ -1,5 +1,5 @@
 module invoicetronic-send-example
 
-go 1.18
+go 1.23
 
-require github.com/invoicetronic/go-sdk v1.1.0
+require github.com/invoicetronic/go-sdk v1.1.7
