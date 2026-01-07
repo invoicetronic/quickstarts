@@ -1,13 +1,13 @@
 import { Configuration, ReceiveApi } from '@invoicetronic/ts-sdk';
 import * as fs from 'fs';
 
-// Configura l'SDK
+// Configure the SDK
 const config = new Configuration({
-  username: 'LA TUA CHIAVE API DI TEST (inizia con ik_test_)',
+  username: 'YOUR TEST API KEY (starts with ik_test_)',
   basePath: 'https://api.invoicetronic.com/v1'
 });
 
-// Scarica le fatture non lette
+// Download unread invoices
 const receiveApi = new ReceiveApi(config);
 
 async function downloadInvoices() {
@@ -29,7 +29,7 @@ async function downloadInvoices() {
       true        // includePayload
     );
 
-    console.log(`Ricevute ${inboundInvoices.data.length} fatture`);
+    console.log(`Received ${inboundInvoices.data.length} invoices`);
 
     for (const invoice of inboundInvoices.data) {
       if (invoice.encoding === 'Xml') {
@@ -39,12 +39,12 @@ async function downloadInvoices() {
         fs.writeFileSync(invoice.file_name!, buffer);
       }
 
-      console.log(`Scaricato ${invoice.file_name} da un fornitore con Partita IVA ${invoice.prestatore}`);
+      console.log(`Downloaded ${invoice.file_name} from a vendor with VAT ID ${invoice.prestatore}`);
     }
   } catch (error: any) {
-    console.error('Errore:', error.message);
+    console.error('Error:', error.message);
     if (error.response) {
-      console.error('Dettagli:', error.response.data);
+      console.error('Details:', error.response.data);
     }
   }
 }

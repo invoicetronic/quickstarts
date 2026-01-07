@@ -1,14 +1,14 @@
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-// Configura l'SDK
+// Configure the SDK
 $config = Invoicetronic\Configuration::getDefaultConfiguration()
-    ->setUsername('LA TUA CHIAVE API DI TEST (inizia con ik_test_)');
+    ->setUsername('YOUR TEST API KEY (starts with ik_test_)');
 
 $config->setHost('https://api.invoicetronic.com/v1');
 
-// Invia una fattura
-$filePath = '/qualche/percorso/file/nomefile.xml';
+// Send an invoice
+$filePath = '/some/file/path/filename.xml';
 
 $metaData = [
     'internal_id' => '123',
@@ -29,9 +29,9 @@ try {
 
     $sentInvoice = $sendApi->sendPost($sendData);
 
-    echo "La fattura è stata inviata con successo, ora ha l'Id univoco {$sentInvoice->getId()}.\n";
+    echo "The invoice was sent successfully, it now has the unique Id of {$sentInvoice->getId()}.\n";
 } catch (Exception $e) {
-    echo 'Errore: ' . $e->getMessage() . "\n";
+    echo 'Error: ' . $e->getMessage() . "\n";
     if (method_exists($e, 'getResponseBody')) {
         echo 'Response: ' . $e->getResponseBody() . "\n";
     }

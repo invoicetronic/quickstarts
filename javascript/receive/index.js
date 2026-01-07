@@ -1,14 +1,14 @@
 const invoicetronicSdk = require('@invoicetronic/js-sdk');
 const fs = require('fs');
 
-// Configura l'SDK
+// Configure the SDK
 const apiClient = invoicetronicSdk.ApiClient.instance;
 const basicAuth = apiClient.authentications['Basic'];
-basicAuth.username = 'LA TUA CHIAVE API DI TEST (inizia con ik_test_)';
+basicAuth.username = 'YOUR TEST API KEY (starts with ik_test_)';
 
 apiClient.basePath = 'https://api.invoicetronic.com/v1';
 
-// Scarica le fatture non lette
+// Download unread invoices
 const receiveApi = new invoicetronicSdk.ReceiveApi();
 
 async function downloadInvoices() {
@@ -19,10 +19,9 @@ async function downloadInvoices() {
     };
 
     const inboundInvoices = await receiveApi.receiveGet(opts);
-    console.log(`Ricevute ${inboundInvoices.length} fatture`);
+    console.log(`Received ${inboundInvoices.length} invoices`);
 
     for (const invoice of inboundInvoices) {
-      // Gestisci encoding XML o Base64
       if (invoice.encoding === 'xml') {
         fs.writeFileSync(invoice.fileName, invoice.payload, 'utf8');
       } else if (invoice.encoding === 'base64') {
@@ -30,10 +29,10 @@ async function downloadInvoices() {
         fs.writeFileSync(invoice.fileName, buffer);
       }
 
-      console.log(`Scaricato ${invoice.fileName} da un fornitore con Partita IVA ${invoice.prestatore}`);
+      console.log(`Downloaded ${invoice.fileName} from a vendor with VAT ID ${invoice.prestatore}`);
     }
   } catch (error) {
-    console.error('Errore:', error.message);
+    console.error('Error:', error.message);
     if (error.response) {
       console.error('Response:', error.response.text);
     }

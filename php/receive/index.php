@@ -1,13 +1,13 @@
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-// Configura l'SDK
+// Configure the SDK
 $config = Invoicetronic\Configuration::getDefaultConfiguration()
-    ->setUsername('LA TUA CHIAVE API DI TEST (inizia con ik_test_)');
+    ->setUsername('YOUR TEST API KEY (starts with ik_test_)');
 
 $config->setHost('https://api.invoicetronic.com/v1');
 
-// Scarica le fatture non lette
+// Download unread invoices
 $receiveApi = new Invoicetronic\Api\ReceiveApi(
     new GuzzleHttp\Client(),
     $config
@@ -22,20 +22,19 @@ try {
         true   // includePayload
     );
 
-    echo "Ricevute " . count($inboundInvoices) . " fatture\n";
+    echo "Received " . count($inboundInvoices) . " invoices\n";
 
     foreach ($inboundInvoices as $invoice) {
-        // Gestisci encoding XML o Base64
         if ($invoice->getEncoding() === 'Xml') {
             file_put_contents($invoice->getFileName(), $invoice->getPayload());
         } elseif ($invoice->getEncoding() === 'Base64') {
             file_put_contents($invoice->getFileName(), base64_decode($invoice->getPayload()));
         }
 
-        echo "Scaricato {$invoice->getFileName()} da un fornitore con Partita IVA {$invoice->getPrestatore()}\n";
+        echo "Downloaded {$invoice->getFileName()} from a vendor with VAT ID {$invoice->getPrestatore()}\n";
     }
 } catch (Exception $e) {
-    echo 'Errore: ' . $e->getMessage() . "\n";
+    echo 'Error: ' . $e->getMessage() . "\n";
     if (method_exists($e, 'getResponseBody')) {
         echo 'Response: ' . $e->getResponseBody() . "\n";
     }

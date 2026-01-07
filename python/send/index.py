@@ -3,14 +3,14 @@ from invoicetronic_sdk.rest import ApiException
 from invoicetronic_sdk.models.send import Send
 import os
 
-# Configura l'SDK
+# Configure the SDK
 configuration = invoicetronic_sdk.Configuration(
-    username='LA TUA CHIAVE API DI TEST (inizia con ik_test_)',
+    username='YOUR TEST API KEY (starts with ik_test_)',
     host='https://api.invoicetronic.com/v1'
 )
 
-# Invia una fattura
-file_path = '/qualche/percorso/file/nomefile.xml'
+# Send an invoice
+file_path = '/some/file/path/filename.xml'
 
 meta_data = {
     'internal_id': '123',
@@ -33,7 +33,7 @@ with invoicetronic_sdk.ApiClient(configuration) as api_client:
 
         sent_invoice = send_api.send_post(send_data)
 
-        print(f"La fattura è stata inviata con successo, ora ha l'Id univoco {sent_invoice.id}.")
+        print(f"The invoice was sent successfully, it now has the unique Id of {sent_invoice.id}.")
 
     except ApiException as e:
-        print(f"Errore: {e}")
+        print(f"Error: {e}")

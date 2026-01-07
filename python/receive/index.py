@@ -2,13 +2,13 @@ import invoicetronic_sdk
 from invoicetronic_sdk.rest import ApiException
 import base64
 
-# Configura l'SDK
+# Configure the SDK
 configuration = invoicetronic_sdk.Configuration(
-    username='LA TUA CHIAVE API DI TEST (inizia con ik_test_)',
+    username='YOUR TEST API KEY (starts with ik_test_)',
     host='https://api.invoicetronic.com/v1'
 )
 
-# Scarica le fatture non lette
+# Download unread invoices
 with invoicetronic_sdk.ApiClient(configuration) as api_client:
     receive_api = invoicetronic_sdk.ReceiveApi(api_client)
 
@@ -18,7 +18,7 @@ with invoicetronic_sdk.ApiClient(configuration) as api_client:
             include_payload=True
         )
 
-        print(f"Ricevute {len(inbound_invoices)} fatture")
+        print(f"Received {len(inbound_invoices)} invoices")
 
         for invoice in inbound_invoices:
             if invoice.encoding == 'Xml':
@@ -28,7 +28,7 @@ with invoicetronic_sdk.ApiClient(configuration) as api_client:
                 with open(invoice.file_name, 'wb') as f:
                     f.write(base64.b64decode(invoice.payload))
 
-            print(f"Scaricato {invoice.file_name} da un fornitore con Partita IVA {invoice.prestatore}")
+            print(f"Downloaded {invoice.file_name} from a vendor with VAT ID {invoice.prestatore}")
 
     except ApiException as e:
-        print(f"Errore: {e}")
+        print(f"Error: {e}")

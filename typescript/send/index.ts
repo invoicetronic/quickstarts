@@ -2,14 +2,14 @@ import { Configuration, SendApi, Send } from '@invoicetronic/ts-sdk';
 import * as fs from 'fs';
 import * as path from 'path';
 
-// Configura l'SDK
+// Configure the SDK
 const config = new Configuration({
-  username: 'LA TUA CHIAVE API DI TEST (inizia con ik_test_)',
+  username: 'YOUR TEST API KEY (starts with ik_test_)',
   basePath: 'https://api.invoicetronic.com/v1'
 });
 
-// Invia una fattura
-const filePath = '/qualche/percorso/file/nomefile.xml';
+// Send an invoice
+const filePath = '/some/file/path/filename.xml';
 
 const metaData: { [key: string]: string } = {
   'internal_id': '123',
@@ -29,11 +29,11 @@ async function sendInvoice() {
 
     const sentInvoice = await sendApi.sendPost(sendData);
 
-    console.log(`La fattura è stata inviata con successo, ora ha l'Id univoco ${sentInvoice.data.id}.`);
+    console.log(`The invoice was sent successfully, it now has the unique Id of ${sentInvoice.data.id}.`);
   } catch (error: any) {
-    console.error('Errore:', error.message);
+    console.error('Error:', error.message);
     if (error.response) {
-      console.error('Dettagli:', error.response.data);
+      console.error('Details:', error.response.data);
     }
   }
 }

@@ -2,15 +2,15 @@ const invoicetronicSdk = require('@invoicetronic/js-sdk');
 const fs = require('fs');
 const path = require('path');
 
-// Configura l'SDK
+// Configure the SDK
 const apiClient = invoicetronicSdk.ApiClient.instance;
 const basicAuth = apiClient.authentications['Basic'];
-basicAuth.username = 'LA TUA CHIAVE API DI TEST (inizia con ik_test_)';
+basicAuth.username = 'YOUR TEST API KEY (starts with ik_test_)';
 
 apiClient.basePath = 'https://api.invoicetronic.com/v1';
 
-// Invia una fattura
-const filePath = '/qualche/percorso/file/nomefile.xml';
+// Send an invoice
+const filePath = '/some/file/path/filename.xml';
 
 const metaData = {
   'internal_id': '123',
@@ -29,9 +29,9 @@ async function sendInvoice() {
 
     const sentInvoice = await sendApi.sendPost(sendData);
 
-    console.log(`La fattura è stata inviata con successo, ora ha l'Id univoco ${sentInvoice.id}.`);
+    console.log(`The invoice was sent successfully, it now has the unique Id of ${sentInvoice.id}.`);
   } catch (error) {
-    console.error('Errore:', error.message);
+    console.error('Error:', error.message);
     if (error.response) {
       console.error('Response:', error.response.text);
     }
