@@ -1,0 +1,16 @@
+{
+    "name": "invoicetronic/update-example",
+    "description": "Invoicetronic API - Notification history (update) example",
+    "type": "project",
+    "require": {
+        "php": ">=7.4",
+        "invoicetronic/invoicetronic-sdk": "^1.1.7"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Invoicetronic",
+            "email": "info@invoicetronic.com"
+        }
+    ]
+}
