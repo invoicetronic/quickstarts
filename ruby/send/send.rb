@@ -30,6 +30,11 @@ begin
   sent_invoice = api_instance.send_post(send_data)
 
   puts "The invoice was sent successfully, it now has the unique Id of #{sent_invoice.id}."
+
+  # Read the current SDI state without a separate /update call.
+  # latest_state may be nil right after submission (the SDI hasn't processed yet).
+  fresh = api_instance.send_id_get(sent_invoice.id)
+  puts "Current state: #{fresh.latest_state || 'Processing'}"
 rescue InvoicetronicSdk::ApiError => e
   puts "Error: #{e}"
 end

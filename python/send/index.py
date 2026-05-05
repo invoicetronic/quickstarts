@@ -35,5 +35,10 @@ with invoicetronic_sdk.ApiClient(configuration) as api_client:
 
         print(f"The invoice was sent successfully, it now has the unique Id of {sent_invoice.id}.")
 
+        # Read the current SDI state without a separate /update call.
+        # latest_state may be None right after submission (the SDI hasn't processed yet).
+        fresh = send_api.send_id_get(sent_invoice.id)
+        print(f"Current state: {fresh.latest_state or 'Processing'}")
+
     except ApiException as e:
         print(f"Error: {e}")

@@ -31,6 +31,11 @@ try
     });
 
     Console.WriteLine($"The invoice was sent successfully, it now has the unique Id of {sentInvoice.Id}.");
+
+    // Read the current SDI state without a separate /update call.
+    // LatestState may be null right after submission (the SDI hasn't processed yet).
+    var fresh = await sendApi.SendIdGetAsync(sentInvoice.Id!.Value);
+    Console.WriteLine($"Current state: {fresh.LatestState?.ToString() ?? "Processing"}");
 }
 catch (ApiException e)
 {

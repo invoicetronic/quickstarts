@@ -60,4 +60,18 @@ func main() {
 
 	fmt.Printf("The invoice was sent successfully, it now has the unique Id of %s.\n",
 		*sentInvoice.Id)
+
+	// Read the current SDI state without a separate /update call.
+	// GetLatestState() returns "" right after submission (the SDI hasn't processed yet).
+	fresh, _, err := client.SendAPI.SendIdGet(ctx, *sentInvoice.Id).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error fetching state: %v\n", err)
+		return
+	}
+
+	state := fresh.GetLatestState()
+	if state == "" {
+		state = "Processing"
+	}
+	fmt.Printf("Current state: %s\n", state)
 }

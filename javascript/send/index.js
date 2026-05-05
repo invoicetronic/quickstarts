@@ -30,6 +30,11 @@ async function sendInvoice() {
     const sentInvoice = await sendApi.sendPost(sendData);
 
     console.log(`The invoice was sent successfully, it now has the unique Id of ${sentInvoice.id}.`);
+
+    // Read the current SDI state without a separate /update call.
+    // latest_state may be undefined right after submission (the SDI hasn't processed yet).
+    const fresh = await sendApi.sendIdGet(sentInvoice.id);
+    console.log(`Current state: ${fresh['latest_state'] || 'Processing'}`);
   } catch (error) {
     console.error('Error:', error.message);
     if (error.response) {

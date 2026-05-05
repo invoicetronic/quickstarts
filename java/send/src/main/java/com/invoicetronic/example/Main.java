@@ -46,6 +46,12 @@ public class Main {
             System.out.println("The invoice was sent successfully, it now has the unique Id of " +
                 sentInvoice.getId() + ".");
 
+            // Read the current SDI state without a separate /update call.
+            // getLatestState() may return null right after submission (the SDI hasn't processed yet).
+            Send fresh = sendApi.sendIdGet(sentInvoice.getId(), null);
+            String state = fresh.getLatestState() != null ? fresh.getLatestState().getValue() : "Processing";
+            System.out.println("Current state: " + state);
+
         } catch (ApiException | IOException e) {
             System.err.println("Error: " + e.getMessage());
             e.printStackTrace();

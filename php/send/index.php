@@ -30,6 +30,11 @@ try {
     $sentInvoice = $sendApi->sendPost($sendData);
 
     echo "The invoice was sent successfully, it now has the unique Id of {$sentInvoice->getId()}.\n";
+
+    // Read the current SDI state without a separate /update call.
+    // getLatestState() may return null right after submission (the SDI hasn't processed yet).
+    $fresh = $sendApi->sendIdGet($sentInvoice->getId());
+    echo "Current state: " . ($fresh->getLatestState() ?? 'Processing') . "\n";
 } catch (Exception $e) {
     echo 'Error: ' . $e->getMessage() . "\n";
     if (method_exists($e, 'getResponseBody')) {
