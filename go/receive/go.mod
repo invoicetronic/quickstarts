@@ -2,4 +2,4 @@ module invoicetronic-receive-example
 
 go 1.23
 
-require github.com/invoicetronic/go-sdk v1.10.0
+require github.com/invoicetronic/go-sdk v1.11.0

@@ -19,7 +19,7 @@
         <dependency>
             <groupId>com.invoicetronic</groupId>
             <artifactId>java-sdk</artifactId>
-            <version>1.10</version>
+            <version>1.11</version>
         </dependency>
     </dependencies>
 </project>

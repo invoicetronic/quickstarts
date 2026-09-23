@@ -1,1 +1,1 @@
-invoicetronic-sdk>=1.10
+invoicetronic-sdk>=1.11
