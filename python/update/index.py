@@ -4,6 +4,7 @@ from invoicetronic_sdk.rest import ApiException
 # Configure the SDK
 configuration = invoicetronic_sdk.Configuration(
     username='YOUR TEST API KEY (starts with ik_test_)',
+    password='',
     host='https://api.invoicetronic.com/v1'
 )
 
