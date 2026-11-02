@@ -4,6 +4,7 @@ target/
 *.war
 *.ear
 *.xml
+!pom.xml
 *.xml.p7m
 .env
 .idea/

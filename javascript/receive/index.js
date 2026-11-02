@@ -22,14 +22,14 @@ async function downloadInvoices() {
     console.log(`Received ${inboundInvoices.length} invoices`);
 
     for (const invoice of inboundInvoices) {
-      if (invoice.encoding === 'xml') {
-        fs.writeFileSync(invoice.fileName, invoice.payload, 'utf8');
-      } else if (invoice.encoding === 'base64') {
+      if (invoice.encoding === 'Xml') {
+        fs.writeFileSync(invoice.file_name, invoice.payload, 'utf8');
+      } else if (invoice.encoding === 'Base64') {
         const buffer = Buffer.from(invoice.payload, 'base64');
-        fs.writeFileSync(invoice.fileName, buffer);
+        fs.writeFileSync(invoice.file_name, buffer);
       }
 
-      console.log(`Downloaded ${invoice.fileName} from a vendor with VAT ID ${invoice.prestatore}`);
+      console.log(`Downloaded ${invoice.file_name} from a vendor with VAT ID ${invoice.prestatore}`);
     }
   } catch (error) {
     console.error('Error:', error.message);

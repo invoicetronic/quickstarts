@@ -46,9 +46,8 @@ func main() {
 	fileName := filepath.Base(filePath)
 	payloadStr := string(payload)
 
-	sendData := *invoicetronicsdk.NewSend()
+	sendData := *invoicetronicsdk.NewSend(payloadStr)
 	sendData.SetFileName(fileName)
-	sendData.SetPayload(payloadStr)
 	sendData.SetMetaData(metaData)
 
 	sentInvoice, _, err := client.SendAPI.SendPost(ctx).Send(sendData).Execute()
@@ -58,7 +57,7 @@ func main() {
 		return
 	}
 
-	fmt.Printf("The invoice was sent successfully, it now has the unique Id of %s.\n",
+	fmt.Printf("The invoice was sent successfully, it now has the unique Id of %d.\n",
 		*sentInvoice.Id)
 
 	// Read the current SDI state without a separate /update call.

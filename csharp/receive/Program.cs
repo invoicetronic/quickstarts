@@ -14,7 +14,7 @@ var receiveApi = new ReceiveApi(config);
 
 try
 {
-    var inboundInvoices = await receiveApi.ReceiveGetAsync(unread: true);
+    var inboundInvoices = await receiveApi.ReceiveGetAsync(unread: true, includePayload: true);
     Console.WriteLine($"Received {inboundInvoices.Count} invoices");
 
     foreach (var invoice in inboundInvoices)

@@ -15,11 +15,8 @@ $receiveApi = new Invoicetronic\Api\ReceiveApi(
 
 try {
     $inboundInvoices = $receiveApi->receiveGet(
-        null,  // page
-        null,  // pageSize
-        null,  // sort
-        true,  // unread
-        true   // includePayload
+        unread: true,
+        include_payload: true
     );
 
     echo "Received " . count($inboundInvoices) . " invoices\n";

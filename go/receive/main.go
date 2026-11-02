@@ -46,10 +46,10 @@ func main() {
 	for _, invoice := range inboundInvoices {
 		if invoice.Encoding != nil {
 			if *invoice.Encoding == "Xml" {
-				err = os.WriteFile(*invoice.FileName, []byte(*invoice.Payload), 0644)
+				err = os.WriteFile(invoice.GetFileName(), []byte(invoice.Payload), 0644)
 			} else if *invoice.Encoding == "Base64" {
-				decoded, _ := base64.StdEncoding.DecodeString(*invoice.Payload)
-				err = os.WriteFile(*invoice.FileName, decoded, 0644)
+				decoded, _ := base64.StdEncoding.DecodeString(invoice.Payload)
+				err = os.WriteFile(invoice.GetFileName(), decoded, 0644)
 			}
 
 			if err != nil {
@@ -58,7 +58,7 @@ func main() {
 			}
 
 			fmt.Printf("Downloaded %s from a vendor with VAT ID %s\n",
-				*invoice.FileName, invoice.Prestatore.Get())
+				invoice.GetFileName(), invoice.GetPrestatore())
 		}
 	}
 }

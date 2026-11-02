@@ -23,7 +23,7 @@ async function fetchUpdates() {
 
     for (const update of updates) {
       const description = update.description || 'OK';
-      console.log(`  [${update.lastUpdate}] state=${update.state} - ${description}`);
+      console.log(`  [${update.last_update}] state=${update.state} - ${description}`);
     }
   } catch (error) {
     console.error('Error:', error.message);

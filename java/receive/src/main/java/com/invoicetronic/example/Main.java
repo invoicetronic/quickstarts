@@ -44,7 +44,8 @@ public class Main {
                 true,  // includePayload
                 null,  // page
                 null,  // pageSize
-                null   // sort
+                null,  // sort
+                null   // q
             );
 
             System.out.println("Received " + inboundInvoices.size() + " invoices");

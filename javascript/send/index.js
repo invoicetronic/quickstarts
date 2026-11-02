@@ -23,9 +23,9 @@ const sendApi = new invoicetronicSdk.SendApi();
 async function sendInvoice() {
   try {
     const sendData = new invoicetronicSdk.Send();
-    sendData.fileName = path.basename(filePath);
+    sendData.file_name = path.basename(filePath);
     sendData.payload = fs.readFileSync(filePath, 'utf8');
-    sendData.metaData = metaData;
+    sendData.meta_data = metaData;
 
     const sentInvoice = await sendApi.sendPost(sendData);
 
@@ -34,7 +34,7 @@ async function sendInvoice() {
     // Read the current SDI state without a separate /update call.
     // latest_state may be undefined right after submission (the SDI hasn't processed yet).
     const fresh = await sendApi.sendIdGet(sentInvoice.id);
-    console.log(`Current state: ${fresh['latest_state'] || 'Processing'}`);
+    console.log(`Current state: ${fresh.latest_state || 'Processing'}`);
   } catch (error) {
     console.error('Error:', error.message);
     if (error.response) {

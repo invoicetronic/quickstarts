@@ -41,7 +41,7 @@ public class Main {
             sendData.setPayload(payload);
             sendData.setMetaData(metaData);
 
-            Send sentInvoice = sendApi.sendPost(sendData, null, null);
+            Send sentInvoice = sendApi.sendPost(sendData, null, null, null);
 
             System.out.println("The invoice was sent successfully, it now has the unique Id of " +
                 sentInvoice.getId() + ".");

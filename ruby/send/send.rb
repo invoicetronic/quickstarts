@@ -1,8 +1,10 @@
 require 'invoicetronic_sdk'
 
 # Configure the SDK
-InvoicetronicSdk.configure do |config|
-  config.host = 'https://api.invoicetronic.com/v1'
+Invoicetronic_Sdk.configure do |config|
+  config.scheme = 'https'
+  config.host = 'api.invoicetronic.com'
+  config.base_path = '/v1'
   config.username = 'YOUR TEST API KEY (starts with ik_test_)'
   config.password = ''
 end
@@ -16,12 +18,12 @@ meta_data = {
   'some_other_custom_data' => 'value'
 }
 
-api_instance = InvoicetronicSdk::SendApi.new
+api_instance = Invoicetronic_Sdk::SendApi.new
 
 begin
   payload = File.read(file_path)
 
-  send_data = InvoicetronicSdk::Send.new(
+  send_data = Invoicetronic_Sdk::ModelSend.new(
     file_name: File.basename(file_path),
     payload: payload,
     meta_data: meta_data
@@ -35,6 +37,6 @@ begin
   # latest_state may be nil right after submission (the SDI hasn't processed yet).
   fresh = api_instance.send_id_get(sent_invoice.id)
   puts "Current state: #{fresh.latest_state || 'Processing'}"
-rescue InvoicetronicSdk::ApiError => e
+rescue Invoicetronic_Sdk::ApiError => e
   puts "Error: #{e}"
 end
